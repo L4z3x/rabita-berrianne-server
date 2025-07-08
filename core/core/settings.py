@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "dj_rest_auth",
     # local apps:
     "user",
-    "form",
 ]
 
 # ===== CORS and CSRF settings =====
@@ -122,7 +121,9 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "HCA API documentation",
     "OPERATION_ID_GENERATOR": "drf_spectacular.utils.simple_operation_id_generator",
     "SERVE_INCLUDE_SCHEMA": False,
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"]
+    if DEBUG
+    else ["rest_framework.permissions.IsAdminUser"],
     "SERVE_URLCONF": "core.urls",
 }
 
